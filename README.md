@@ -12,71 +12,70 @@ A lightweight, customizable library for generating audio waveform visualizations
 
 ## Usage
 
-### React Component
-
-\`\`\`jsx
-import { Waveform } from "@/components/waveform";
-
-function MyComponent() {
-  return (
-    <Waveform 
-      height={200}
-      options={{
-        backgroundColor: "#0f172a",
-        waveColor: "rgba(255, 255, 255, 0.7)",
-        barWidth: 3,
-        gap: 4
-      }}
-      showControls
-    />
-  );
-}
-\`\`\`
-
-### React Hook
-
-\`\`\`jsx
-import { useWaveform } from "@/hooks/use-waveform";
-
-function MyCustomWaveform() {
-  const { canvasRef, regenerate } = useWaveform({
-    backgroundColor: "#1e293b",
-    waveColor: "#3b82f6"
-  });
-  
-  return (
-    <div>
-      <div className="h-[200px] rounded-lg overflow-hidden">
-        <canvas ref={canvasRef} className="w-full h-full" />
-      </div>
-      <button onClick={regenerate}>New Pattern</button>
-    </div>
-  );
-}
-\`\`\`
-
-### Vanilla JavaScript
-
-\`\`\`js
-import { generateWaveform, createWaveform } from "@/lib/waveform";
-
-// Option 1: Use with existing canvas
-const canvas = document.getElementById("my-canvas");
-const regenerate = generateWaveform(canvas, {
-  backgroundColor: "#0f172a",
-  waveColor: "rgba(255, 255, 255, 0.7)"
-});
-
-// Regenerate with new random pattern
-regenerate();
-
-// Option 2: Create new canvas in container
-const container = document.getElementById("waveform-container");
-const { canvas, regenerate } = createWaveform(container, {
-  backgroundColor: "#1e293b",
-  waveColor: "#3b82f6"
-});
-\`\`\`
+```javascript
+ // Example 1: Basic waveform in container
+    const basicWaveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#basic-waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)'
+    });
+    
+    document.getElementById('regenerate-basic').addEventListener('click', function() {
+      basicWaveform.regenerate();
+    });
+    
+    // Example 2: Customizable waveform
+    const customWaveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#custom-waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)',
+      barWidth: 2,
+      gap: 3
+    });
+    
+    document.getElementById('regenerate-custom').addEventListener('click', function() {
+      customWaveform.regenerate();
+    });
+    
+    document.getElementById('apply-colors').addEventListener('click', function() {
+      const bgColor = document.getElementById('bg-color').value;
+      const waveColor = document.getElementById('wave-color').value;
+      
+      customWaveform.updateOptions({
+        backgroundColor: bgColor,
+        waveColor: waveColor
+      });
+    });
+    
+    // Example 3: Using existing canvas
+    const existingCanvas = document.getElementById('existing-canvas');
+    const existingWaveform = SoundSkyWaveform.createWaveform({
+      canvas: existingCanvas,
+      backgroundColor: '#1e293b',
+      waveColor: 'rgba(59, 130, 246, 0.7)',
+      barWidth: 4,
+      gap: 2
+    });
+    
+    document.getElementById('regenerate-existing').addEventListener('click', function() {
+      existingWaveform.regenerate();
+    });
+    
+    // Example 4: Single waveform example
+    console.log("SoundSkyWaveform loaded:", SoundSkyWaveform !== undefined);
+    
+    const waveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)',
+      barWidth: 3,
+      gap: 4
+    });
+    
+    document.getElementById('regenerate').addEventListener('click', function() {
+      waveform.regenerate();
+    });
+```
 
 ## API Reference
 
