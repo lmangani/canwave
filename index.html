@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundSky Waveform Example</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .container {
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .waveform-container {
+      height: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    button:hover {
+      background-color: #4338ca;
+    }
+    
+    .color-picker {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .color-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    label {
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <h1>SoundSky Waveform Examples</h1>
+  
+  <div class="container">
+    <h2>Basic Waveform</h2>
+    <div id="basic-waveform" class="waveform-container"></div>
+    <div class="controls">
+      <button id="regenerate-basic">Regenerate</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Customizable Waveform</h2>
+    <div id="custom-waveform" class="waveform-container"></div>
+    
+    <div class="color-picker">
+      <div class="color-field">
+        <label for="bg-color">Background:</label>
+        <input type="color" id="bg-color" value="#0f172a">
+      </div>
+      
+      <div class="color-field">
+        <label for="wave-color">Wave:</label>
+        <input type="color" id="wave-color" value="#ffffff">
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button id="regenerate-custom">Regenerate</button>
+      <button id="apply-colors">Apply Colors</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Existing Canvas</h2>
+    <canvas id="existing-canvas" class="waveform-container"></canvas>
+    <div class="controls">
+      <button id="regenerate-existing">Regenerate</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Single Waveform Example</h2>
+    <div id="waveform" class="waveform-container"></div>
+    <button id="regenerate">Regenerate</button>
+  </div>
+  
+  <script src="lib/waveform.js"></script>
+  <script>
+    // Example 1: Basic waveform in container
+    const basicWaveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#basic-waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)'
+    });
+    
+    document.getElementById('regenerate-basic').addEventListener('click', function() {
+      basicWaveform.regenerate();
+    });
+    
+    // Example 2: Customizable waveform
+    const customWaveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#custom-waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)',
+      barWidth: 2,
+      gap: 3
+    });
+    
+    document.getElementById('regenerate-custom').addEventListener('click', function() {
+      customWaveform.regenerate();
+    });
+    
+    document.getElementById('apply-colors').addEventListener('click', function() {
+      const bgColor = document.getElementById('bg-color').value;
+      const waveColor = document.getElementById('wave-color').value;
+      
+      customWaveform.updateOptions({
+        backgroundColor: bgColor,
+        waveColor: waveColor
+      });
+    });
+    
+    // Example 3: Using existing canvas
+    const existingCanvas = document.getElementById('existing-canvas');
+    const existingWaveform = SoundSkyWaveform.createWaveform({
+      canvas: existingCanvas,
+      backgroundColor: '#1e293b',
+      waveColor: 'rgba(59, 130, 246, 0.7)',
+      barWidth: 4,
+      gap: 2
+    });
+    
+    document.getElementById('regenerate-existing').addEventListener('click', function() {
+      existingWaveform.regenerate();
+    });
+    
+    // Example 4: Single waveform example
+    console.log("SoundSkyWaveform loaded:", SoundSkyWaveform !== undefined);
+    
+    const waveform = SoundSkyWaveform.createWaveformInContainer({
+      container: '#waveform',
+      backgroundColor: '#0f172a',
+      waveColor: 'rgba(255, 255, 255, 0.7)',
+      barWidth: 3,
+      gap: 4
+    });
+    
+    document.getElementById('regenerate').addEventListener('click', function() {
+      waveform.regenerate();
+    });
+  </script>
+</body>
+</html>
