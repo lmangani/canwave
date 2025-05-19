@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/6e7e4f7a-765f-4f23-997c-1391076fd6d8)
+
 # Canvas Waveform Library
 
 A lightweight, customizable library for generating audio waveform visualizations using HTML Canvas.
