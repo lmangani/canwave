@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple CanWave Demo</title>
+  <style>
+    #waveform {
+      height: 200px;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="waveform"></div>
+  
+  <script src="https://lmangani.github.io/canwave/lib/waveform.js"></script>
+  <script>
+    // Create a waveform when the script loads
+    window.onload = function() {
+      SoundSkyWaveform.createWaveformInContainer({
+        container: '#waveform',
+        backgroundColor: '#0f172a',
+        waveColor: 'rgba(255, 255, 255, 0.7)'
+      });
+    };
+  </script>
+</body>
+</html>
