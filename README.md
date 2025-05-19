@@ -10,7 +10,7 @@ A lightweight, customizable library for generating audio waveform visualizations
 - TypeScript support with full type definitions
 - Responsive design that adapts to container size
 
-## Usage
+## Usage [Example](example.html)
 
 ```javascript
  // Example 1: Basic waveform in container
