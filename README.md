@@ -2,15 +2,12 @@
 
 # Canvas Waveform Library
 
-A lightweight, customizable library for generating audio waveform visualizations using HTML Canvas.
+A lightweight, customizable library for generating audio waveform visualizations using HTML Canvas
 
 ## Features
 
 - Customizable colors, bar width, and spacing
-- React hook and component for easy integration
 - Vanilla JS functions for non-React projects
-- TypeScript support with full type definitions
-- Responsive design that adapts to container size
 
 ## Usage [Example](example.html)
 
